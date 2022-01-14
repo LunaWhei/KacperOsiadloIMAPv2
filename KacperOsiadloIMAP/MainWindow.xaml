@@ -1,0 +1,73 @@
+﻿<Window x:Class="KacperOsiadloIMAP.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KacperOsiadloIMAP"
+        mc:Ignorable="d"
+        Title="Mailbox" Height="500" Width="1200">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Mailbox" Selector.Selected="TabItem_Selected" x:Name="Mailbox">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="32*"/>
+                        <ColumnDefinition Width="763*"/>
+             
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="New_Mail" Content="Send Mail" Click="New_Mail_Click"/>
+                    </Grid>
+                    <Grid Grid.Row="1" Grid.ColumnSpan="2">
+                        <Frame NavigationUIVisibility="Hidden" Grid.Column="1" x:Name="MailboxFrame"/>
+                    </Grid>
+
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Settings"  x:Name="Settings" Selector.Selected="Settings_Selected"/>
+            <TabItem Header="Login Panel" x:Name="Login_page" Selector.Selected="Login_Selected">
+                <Grid>
+
+                    <StackPanel>
+                        <Label Content="login" />
+                        <TextBox x:Name="Login" Text="kacperosiadlop" />
+                        <Label Content="Password" />
+                        <TextBox x:Name="Password" Text="p,4hdy=xs(P,/!+Y"/>
+                        <Label Content="Port" />
+                        <TextBox x:Name="Imap_port" Text="993"/>
+                        <Label Content="imap server" />
+                        <TextBox x:Name="ImapServer" Text="imap.kacperosiadlo.beep.pl"/>
+                        <Label Content="Email" />
+                        <TextBox x:Name="Email" Text="inzynierka@greatdev.pl" />
+                        <Label Content="Adres Smtp" />
+                        <TextBox x:Name="Smtp" Text="smtp.kacperosiadlo.beep.pl" />
+                        <Label Content="Smtp Port" />
+                        <TextBox x:Name="Smtp_port" Text="465" />
+                        <Button x:Name="Save_login_data" Height="50" Content="login" Click="Save_login_data_Click" />
+                    </StackPanel>
+
+
+
+
+
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
