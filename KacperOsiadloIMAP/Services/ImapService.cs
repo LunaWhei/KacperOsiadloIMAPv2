@@ -135,7 +135,7 @@ namespace KacperOsiadloIMAP.Services
                 using var stream = File.Create(fileName);
                 if (attachment is MessagePart)
                 {
-                    var rfc822 = (MessagePart)attachment;
+                    MessagePart rfc822 = (MessagePart)attachment;
 
                     rfc822.Message.WriteTo(stream);
 
