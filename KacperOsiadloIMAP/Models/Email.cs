@@ -7,6 +7,7 @@ using MailKit.Net.Smtp;
 using MailKit;
 using MimeKit;
 using MailKit.Security;
+using MailKit.Net.Imap;
 
 namespace KacperOsiadloIMAP.Models
 {
@@ -31,6 +32,7 @@ namespace KacperOsiadloIMAP.Models
         public async Task SendEmail()
         {
             using var client = new SmtpClient();
+            using var imap = new ImapClient();
 
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress(User.Identity, User.EmailAdress));
@@ -42,10 +44,17 @@ namespace KacperOsiadloIMAP.Models
                 Text = Body
             };
             client.Connect(User.Smtp, User.SmtpPort, SecureSocketOptions.Auto);
+            imap.Connect(User.Imap, User.ImapPort, SecureSocketOptions.Auto);
             await client.AuthenticateAsync(User.Login, User.Password);
             if (client.IsAuthenticated)
             {
+
                 client.Send(message);
+               await imap.AuthenticateAsync(User.Login, User.Password);
+               var folder = imap.Inbox.GetSubfolder("Sent");
+                folder.Open(FolderAccess.ReadWrite);
+                folder.Append(message);
+                imap.Disconnect(true);
                 client.Disconnect(true);
             }
         } 

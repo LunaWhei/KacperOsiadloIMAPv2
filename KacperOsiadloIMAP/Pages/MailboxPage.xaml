@@ -16,7 +16,7 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             
-            <ListBox SelectionChanged="FolderListBox_SelectionChanged" x:Name="FolderListBox" ItemsSource="{Binding Path=folderCollection,UpdateSourceTrigger=PropertyChanged}">
+            <ListBox SelectionChanged="FolderListBox_SelectionChanged" SelectedIndex="0" x:Name="FolderListBox" ItemsSource="{Binding Path=folderCollection,UpdateSourceTrigger=PropertyChanged}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Name}"/>

@@ -111,50 +111,36 @@ namespace KacperOsiadloIMAP.Services
 
             return folders;
         }
-        public static MailMessage GetMessageByUid(UniqueId uid,string FolderName="INBOX")
+
+        public static List<MimeModel>  GetMessageListBasedOnCurrentFolderAsync(string FolderName="INBOX")
         {
-            
+            List<MimeModel> Results = new();
             using var client = new ImapClient();
             client.Connect(GH.MainUser.Imap, GH.MainUser.ImapPort, SecureSocketOptions.Auto);
             client.Authenticate(GH.MainUser.Login, GH.MainUser.Password);
-            client.Inbox.Open(FolderAccess.ReadOnly);
-            var message = client.Inbox.GetMessage(uid);
-            if (FolderName != "INBOX")
-            {
-                client.Inbox.GetSubfolder(FolderName).Open(FolderAccess.ReadOnly);
-                
-                message = client.Inbox.GetSubfolder(FolderName).GetMessage(uid); ;
-            }
             
-            
-            var fileName = "This Mail has no attachments";
-            foreach (MimeEntity attachment in message.Attachments)
+            var folder = client.Inbox;
+            if (FolderName !="INBOX")
             {
-                fileName = attachment.ContentDisposition?.FileName ?? attachment.ContentType.Name;
-
-                using var stream = File.Create(fileName);
-                if (attachment is MessagePart)
-                {
-                    MessagePart rfc822 = (MessagePart)attachment;
-
-                    rfc822.Message.WriteTo(stream);
-
-                }
-                else
-                {
-                    var part = (MimePart)attachment;
-
-                    part.Content.DecodeTo(stream);
-
-                }
+                FolderName = FolderName.Remove(0, 6);
+                folder = client.Inbox.GetSubfolder(FolderName);
             }
+            folder.Open(FolderAccess.ReadWrite);
+            IList<UniqueId> uniqueIds = folder.Search(SearchQuery.All);
+            foreach (var uid in uniqueIds)
+            {
+                Results.Add(new MimeModel {
+                    message = folder.GetMessage(uid),
+                    uid = uid 
+                });
+   
+            }
+            return Results;
 
-            MailMessage MessageList = new() { Lp = message.MessageId, From = message.From, Subject = message.Subject, Date = message.Date.ToString(), To = message.To.ToString(), Body = message.GetTextBody(MimeKit.Text.TextFormat.Plain), AttachmentsName = fileName };
 
-            client.Disconnect(true);
-            return MessageList;
+
         }
-        public static void SetFlagSeenMessage(MailKit.UniqueId UID)
+            public static void SetFlagSeenMessage(MailKit.UniqueId UID)
         {
             using var client = new ImapClient();
             client.Connect(GH.MainUser.Imap, GH.MainUser.ImapPort, SecureSocketOptions.Auto);

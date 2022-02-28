@@ -44,7 +44,7 @@ namespace KacperOsiadloIMAP
             try
             {
                 await email.SendEmail();
-                NavigationService.GoBack();
+                
             }
             catch (Exception ex)
             {

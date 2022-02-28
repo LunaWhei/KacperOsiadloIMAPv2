@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KacperOsiadloIMAP.Models;
+using MimeKit;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,22 +25,23 @@ namespace KacperOsiadloIMAP.Windows
         {
             InitializeComponent();
         }
-        private readonly Models.MailMessage message;
-        public MailMessageWindowDisplayed(Models.MailMessage message)
+        private readonly MailMessage Mail;
+        public MailMessageWindowDisplayed(MailMessage Mail)
         {
             InitializeComponent();
-            this.message = message;
+            this.Mail = Mail;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+
             try
             {
-                MailHeader.Items.Insert(0, "From: "+message.From);
-                MailHeader.Items.Insert(1, "To: " + message.To);
-                MailHeader.Items.Insert(2, "Subject: " + message.Subject);
-                MailHeader.Items.Insert(3, message.Body);
-                MailHeader.Items.Insert(4, message.AttachmentsName);
+                MailHeader.Items.Insert(0, "From: "+Mail.From);
+                MailHeader.Items.Insert(1, "To: " + Mail.To);
+                MailHeader.Items.Insert(2, "Subject: " + Mail.Subject);
+                MailHeader.Items.Insert(3, Mail.Body);
+                MailHeader.Items.Insert(4, Mail.AttachmentsName);
             }
             catch (Exception)
             {

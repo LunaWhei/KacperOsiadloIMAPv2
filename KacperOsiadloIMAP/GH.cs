@@ -17,5 +17,12 @@ namespace KacperOsiadloIMAP
                 return App.User;
             }
         }
+        public static Models.TextFormatSettings textFormatSetting
+        {
+            get
+            {
+                return App.textFormatSettings;
+            }
+        }
     }
 }

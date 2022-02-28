@@ -6,6 +6,29 @@
         xmlns:local="clr-namespace:KacperOsiadloIMAP"
         mc:Ignorable="d"
         Title="Mailbox" Height="500" Width="1200">
+    <Window.Resources>
+        <Style TargetType="Window">
+            
+        </Style>
+        <Style TargetType="Grid">
+            <Setter Property="Background" Value="#143552" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="#143552"/>
+            <Setter Property="Foreground" Value="WhiteSmoke"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="BorderBrush" Value="#145769"/>
+            
+            
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="Background" Value="#125E59"/>
+            <Setter Property="Foreground" Value="WhiteSmoke"/>
+            
+        </Style>
+        
+    </Window.Resources>
     <Grid>
         <TabControl>
             <TabItem Header="Mailbox" Selector.Selected="TabItem_Selected" x:Name="Mailbox">
@@ -42,6 +65,10 @@
             <TabItem Header="Settings"  x:Name="Settings" Selector.Selected="Settings_Selected"/>
             <TabItem Header="Login Panel" x:Name="Login_page" Selector.Selected="Login_Selected">
                 <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
 
                     <StackPanel>
                         <Label Content="login" />

@@ -17,10 +17,12 @@ namespace KacperOsiadloIMAP
         public int Id { get; set; } = 0;
 
         public Models.User User { get; internal set; }
+        public Models.TextFormatSettings textFormatSettings { get;internal set; }
 
         public App()
         {
             User = new Models.User();
+            textFormatSettings = new Models.TextFormatSettings();
         }
     }
 }
