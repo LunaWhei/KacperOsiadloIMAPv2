@@ -89,7 +89,7 @@ namespace KacperOsiadloIMAP
             Folder item = (Folder)FolderListBox.SelectedItem;
 
             IList<UniqueId> uids = ImapService.GetAllUids(FolderName:item.Name);
-            Littlelog.Text = item.Path;
+           
             var emails = ImapService.GetMessageListBasedOnCurrentFolderAsync(item.Path);
             try
             {

@@ -8,6 +8,35 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Loaded="Page_Loaded"
       Title="MailboxPage">
+    
+    <Page.Resources>
+        <Style TargetType="ListBox">
+            <Setter Property="Background" Value="#1e272e"/>
+            <Setter Property="Foreground" Value="#d2dae2"/>
+        </Style>
+
+
+
+        <Style TargetType="ListView">
+            <Setter Property="Background" Value="#1e272e"/>
+            <Setter Property="Foreground" Value="#d2dae2"/>
+        </Style>
+        <Style TargetType="ListViewItem">
+            <Setter Property="Background" Value="#1e272e"/>
+            <Setter Property="Foreground" Value="#d2dae2"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="#d2dae2"/>
+                    <Setter Property="Background" Value="#1e272e"/>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Foreground" Value="#d2dae2"/>
+                    <Setter Property="Background" Value="#1e272e"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+    </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="160"/>
@@ -38,7 +67,6 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <TextBox x:Name="Littlelog" Margin="200,314,0,0">kkk</TextBox>
         </Grid>
 
     </Grid>

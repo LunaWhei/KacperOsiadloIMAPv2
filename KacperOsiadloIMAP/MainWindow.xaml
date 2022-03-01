@@ -5,44 +5,104 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KacperOsiadloIMAP"
         mc:Ignorable="d"
-        Title="Mailbox" Height="500" Width="1200">
+        Title="Mailbox" Height="550" Width="1200">
     <Window.Resources>
+        
+        
+        
+        
         <Style TargetType="Window">
-            
+
         </Style>
         <Style TargetType="Grid">
-            <Setter Property="Background" Value="#143552" />
+            <Setter Property="Background" Value="#1e272e" />
         </Style>
         <Style TargetType="TextBox">
-            <Setter Property="Background" Value="#143552"/>
-            <Setter Property="Foreground" Value="WhiteSmoke"/>
+            <Setter Property="Background" Value="#485460"/>
+            <Setter Property="Foreground" Value="#d2dae2"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="Height" Value="30"/>
-            <Setter Property="BorderBrush" Value="#145769"/>
-            
-            
-        </Style>
-        <Style TargetType="Label">
-            <Setter Property="Background" Value="#125E59"/>
-            <Setter Property="Foreground" Value="WhiteSmoke"/>
-            
-        </Style>
+            <Setter Property="BorderBrush" Value="#1e272e"/>
         
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabItem}">
+                        <Grid>
+                            <Border 
+                                Name="Border"
+                                Margin="0,0,-4,0" 
+                                Background="#ff5e57"
+                                BorderBrush="#ff5e57" 
+                                BorderThickness="0,0,0,0" 
+                                CornerRadius="02,02,02,02" >
+                                <ContentPresenter x:Name="ContentSite"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    ContentSource="Header"
+                                    Margin="12,2,12,2"
+                                    RecognizesAccessKey="True"/>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Panel.ZIndex" Value="100" />
+                                <Setter TargetName="Border" Property="Background" Value="#ff3f34" />
+
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#ff5e57"/>
+            <Setter Property="Foreground" Value="#1e272e"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#ff3f34"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="Background" Value="#1e272e"/>
+            <Setter Property="Foreground" Value="#d2dae2"/>
+
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+
+
     </Window.Resources>
     <Grid>
         <TabControl>
             <TabItem Header="Mailbox" Selector.Selected="TabItem_Selected" x:Name="Mailbox">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="32*"/>
-                        <ColumnDefinition Width="763*"/>
-             
+                        <ColumnDefinition Width="16*"/>
+                        <ColumnDefinition Width="11*"/>
+                        <ColumnDefinition Width="22*"/>
+                        <ColumnDefinition Width="349*"/>
+
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <Grid Grid.Row="0" Grid.ColumnSpan="2">
+                    <Grid Grid.Row="0" Grid.ColumnSpan="4">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
@@ -55,7 +115,7 @@
                         </Grid.ColumnDefinitions>
                         <Button x:Name="New_Mail" Content="Send Mail" Click="New_Mail_Click"/>
                     </Grid>
-                    <Grid Grid.Row="1" Grid.ColumnSpan="2">
+                    <Grid Grid.Row="1" Grid.ColumnSpan="4">
                         <Frame NavigationUIVisibility="Hidden" Grid.Column="1" x:Name="MailboxFrame"/>
                     </Grid>
 
