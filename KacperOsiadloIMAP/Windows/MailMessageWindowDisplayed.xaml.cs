@@ -1,18 +1,7 @@
 ﻿using KacperOsiadloIMAP.Models;
-using MimeKit;
+using KacperOsiadloIMAP.Security;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace KacperOsiadloIMAP.Windows
 {
@@ -40,7 +29,7 @@ namespace KacperOsiadloIMAP.Windows
                 MailHeader.Items.Insert(0, "From: "+Mail.From);
                 MailHeader.Items.Insert(1, "To: " + Mail.To);
                 MailHeader.Items.Insert(2, "Subject: " + Mail.Subject);
-                MailHeader.Items.Insert(3, Mail.Body);
+                MailHeader.Items.Insert(3, Decryptor.Decrypt(Mail.Body));
                 MailHeader.Items.Insert(4, Mail.AttachmentsName);
             }
             catch (Exception)

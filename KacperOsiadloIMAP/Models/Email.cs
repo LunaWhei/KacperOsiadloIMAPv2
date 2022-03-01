@@ -8,6 +8,7 @@ using MailKit;
 using MimeKit;
 using MailKit.Security;
 using MailKit.Net.Imap;
+using KacperOsiadloIMAP.Security;
 
 namespace KacperOsiadloIMAP.Models
 {
@@ -20,6 +21,7 @@ namespace KacperOsiadloIMAP.Models
         public string Body { get; set; }
         private User User { get; set; }
 
+       
         public SmtpService (User user)
         {
 
@@ -34,6 +36,7 @@ namespace KacperOsiadloIMAP.Models
             using var client = new SmtpClient();
             using var imap = new ImapClient();
 
+            
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress(User.Identity, User.EmailAdress));
             message.To.Add(new MailboxAddress("carl", To));
@@ -41,7 +44,7 @@ namespace KacperOsiadloIMAP.Models
 
             message.Body = new TextPart("plain")
             {
-                Text = Body
+                Text = Encryptor.Encrypt(Body)
             };
             client.Connect(User.Smtp, User.SmtpPort, SecureSocketOptions.Auto);
             imap.Connect(User.Imap, User.ImapPort, SecureSocketOptions.Auto);

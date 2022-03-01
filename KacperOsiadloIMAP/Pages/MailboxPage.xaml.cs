@@ -88,7 +88,15 @@ namespace KacperOsiadloIMAP
             
             Folder item = (Folder)FolderListBox.SelectedItem;
 
-            IList<UniqueId> uids = ImapService.GetAllUids(FolderName:item.Name);
+            if (item.Name == null)
+            {
+                IList<UniqueId> uids = ImapService.GetAllUids();
+            }
+            else
+            {
+                IList<UniqueId> uids = ImapService.GetAllUids(FolderName: item.Name);
+            }
+            
            
             var emails = ImapService.GetMessageListBasedOnCurrentFolderAsync(item.Path);
             try
@@ -105,7 +113,13 @@ namespace KacperOsiadloIMAP
 
                                 this.Dispatcher.Invoke(() =>
                                 {
-                                    MailCollection.Add(new MailMessage() { Lp = "", Subject = mail.Subject, Date = mail.Date.ToString(), From = mail.From, To = mail.To.ToString() });
+                                    MailCollection.Add(new MailMessage() { 
+                                        Lp = "",
+                                        Subject = mail.Subject,
+                                        Body = mail.GetTextBody(MimeKit.Text.TextFormat.Plain),
+                                        Date = mail.Date.ToString(),
+                                        From = mail.From,
+                                        To = mail.To.ToString() });
 
                                 });
                             }
