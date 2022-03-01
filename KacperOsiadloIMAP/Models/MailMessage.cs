@@ -1,4 +1,5 @@
 ﻿
+using MimeKit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,6 @@ namespace KacperOsiadloIMAP.Models
         public MailKit.UniqueId UID { get; set; }
         public MimeKit.InternetAddressList From { get; set; }
         public string Message_data { get; set; }
-        public string AttachmentsName { get; set; }
+        public IEnumerable<MimeEntity> AttachmentsName { get; set; }
     }
 }

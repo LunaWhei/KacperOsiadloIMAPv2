@@ -85,22 +85,16 @@ namespace KacperOsiadloIMAP
         private async void FolderListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             MailCollection.Clear();
-            
             Folder item = (Folder)FolderListBox.SelectedItem;
-
-            if (item.Name == null)
+            if (item == null)
             {
-                IList<UniqueId> uids = ImapService.GetAllUids();
-            }
-            else
-            {
-                IList<UniqueId> uids = ImapService.GetAllUids(FolderName: item.Name);
+                item = new Folder() { Path = "INBOX" };
             }
             
-           
             var emails = ImapService.GetMessageListBasedOnCurrentFolderAsync(item.Path);
             try
             {
+                
                 if (emails != null)
                 {
 
@@ -119,7 +113,9 @@ namespace KacperOsiadloIMAP
                                         Body = mail.GetTextBody(MimeKit.Text.TextFormat.Plain),
                                         Date = mail.Date.ToString(),
                                         From = mail.From,
-                                        To = mail.To.ToString() });
+                                        To = mail.To.ToString(),
+                                        AttachmentsName = mail.Attachments
+                                    });
 
                                 });
                             }

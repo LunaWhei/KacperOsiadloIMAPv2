@@ -7,10 +7,10 @@
         mc:Ignorable="d"
         Title="Mailbox" Height="550" Width="1200">
     <Window.Resources>
-        
-        
-        
-        
+
+
+
+
         <Style TargetType="Window">
 
         </Style>
@@ -23,7 +23,7 @@
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="Height" Value="30"/>
             <Setter Property="BorderBrush" Value="#1e272e"/>
-        
+
             <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
         <Style TargetType="{x:Type TabItem}">
@@ -47,6 +47,9 @@
                             </Border>
                         </Grid>
                         <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Border" Property="Background" Value="#999"/>
+                            </Trigger>
                             <Trigger Property="IsSelected" Value="True">
                                 <Setter Property="Panel.ZIndex" Value="100" />
                                 <Setter TargetName="Border" Property="Background" Value="#ff3f34" />
@@ -54,6 +57,7 @@
                             </Trigger>
 
                         </ControlTemplate.Triggers>
+                        
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -88,8 +92,8 @@
 
     </Window.Resources>
     <Grid>
-        <TabControl>
-            <TabItem Header="Mailbox" Selector.Selected="TabItem_Selected" x:Name="Mailbox">
+        <TabControl x:Name="TabSelector" SelectionChanged="TabSelector_SelectionChanged">
+            <TabItem Header="Skrzynka pocztowa"  Selector.Selected="TabItem_Selected" x:Name="MailboxTab">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="16*"/>
@@ -122,15 +126,14 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Settings"  x:Name="Settings" Selector.Selected="Settings_Selected"/>
-            <TabItem Header="Login Panel" x:Name="Login_page" Selector.Selected="Login_Selected">
+            <TabItem Header="Panel Logowania" x:Name="Settings" >
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
-                        <ColumnDefinition/>
+
                     </Grid.ColumnDefinitions>
 
-                    <StackPanel>
+                    <StackPanel Grid.ColumnSpan="4">
                         <Label Content="login" />
                         <TextBox x:Name="Login" Text="kacperosiadlop" />
                         <Label Content="Password" />
@@ -145,7 +148,7 @@
                         <TextBox x:Name="Smtp" Text="smtp.kacperosiadlo.beep.pl" />
                         <Label Content="Smtp Port" />
                         <TextBox x:Name="Smtp_port" Text="465" />
-                        <Button x:Name="Save_login_data" Height="50" Content="login" Click="Save_login_data_Click" />
+                        <Button x:Name="Save_login_data" Height="50" Content="Zaloguj się" Click="Save_login_data_Click" />
                     </StackPanel>
 
 

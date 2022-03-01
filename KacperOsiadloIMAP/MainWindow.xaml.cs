@@ -38,7 +38,8 @@ namespace KacperOsiadloIMAP
             InitializeComponent();
             if (!Is_logged_in)
             {
-                Login_page.IsSelected = true;
+                Settings.IsSelected = true;
+                MailboxTab.IsEnabled = false;
             }
 
             
@@ -66,14 +67,15 @@ namespace KacperOsiadloIMAP
                 await client.AuthenticateAsync(GH.MainUser.Login, GH.MainUser.Password);
                 Is_logged_in = true;
                 MailboxFrame.Navigate(mailboxpage);
-                Mailbox.IsSelected = true;
+                MailboxTab.IsEnabled = true;
+                MailboxTab.IsSelected = true;
                 //FolderListFrame.Navigate(FolderListFrame);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                MessageBox.Show("Niestety nie udało nawiązać się połączenia");
-                throw;
+                MessageBox.Show("Niestety nie udało nawiązać się połączenia" + ex.ToString()) ;
+                
             }
 
         }
@@ -94,18 +96,13 @@ namespace KacperOsiadloIMAP
             
         }
 
-        private void Settings_Selected(object sender, RoutedEventArgs e)
+
+        private void TabSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (!Is_logged_in)
+            if (Settings.IsSelected)
             {
-                Login_page.IsSelected = true;
+                MailboxTab.IsEnabled = false;
             }
         }
-
-        private void Login_Selected(object sender, RoutedEventArgs e)
-        {
-
-        }
-
     }
 }

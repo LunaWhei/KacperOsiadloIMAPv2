@@ -23,8 +23,18 @@ namespace KacperOsiadloIMAP.Services
         {
             using var client = new ImapClient();
 
-            client.Connect(GH.MainUser.Imap, GH.MainUser.ImapPort, SecureSocketOptions.Auto);
-            client.Authenticate(GH.MainUser.Login, GH.MainUser.Password);
+            
+            try
+            {
+                client.Connect(GH.MainUser.Imap, GH.MainUser.ImapPort, SecureSocketOptions.Auto);
+                client.Authenticate(GH.MainUser.Login, GH.MainUser.Password);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Niestety nie udało nawiązać się połączenia" + ex.ToString());
+                
+            }
+           // client.Authenticate(GH.MainUser.Login, GH.MainUser.Password);
             
             if (FolderName=="INBOX")
             {
@@ -96,8 +106,17 @@ namespace KacperOsiadloIMAP.Services
         {
 
             using var client = new ImapClient();
-            client.Connect(GH.MainUser.Imap, GH.MainUser.ImapPort, SecureSocketOptions.Auto);
-            client.Authenticate(GH.MainUser.Login, GH.MainUser.Password);
+            try
+            {
+                client.Connect(GH.MainUser.Imap, GH.MainUser.ImapPort, SecureSocketOptions.Auto);
+                client.Authenticate(GH.MainUser.Login, GH.MainUser.Password);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Niestety nie udało nawiązać się połączenia" + ex.ToString());
+
+            }
+
             var personal = client.GetFolders(client.PersonalNamespaces[0], true).ToList();
             if (!personal.Any(mb => mb.Name.Equals("inbox", StringComparison.InvariantCultureIgnoreCase)))
                 personal.Add(client.Inbox);
@@ -116,9 +135,18 @@ namespace KacperOsiadloIMAP.Services
         {
             List<MimeModel> Results = new();
             using var client = new ImapClient();
+            try
+            {
             client.Connect(GH.MainUser.Imap, GH.MainUser.ImapPort, SecureSocketOptions.Auto);
             client.Authenticate(GH.MainUser.Login, GH.MainUser.Password);
-            
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Niestety nie udało nawiązać się połączenia" + ex.ToString());
+
+            }
+
             var folder = client.Inbox;
             if (FolderName !="INBOX")
             {
