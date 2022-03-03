@@ -14,9 +14,9 @@ namespace KacperOsiadloIMAP.Models
         public string Imap { get; set; }
         public string EmailAdress { get; set; }
         public string  Identity { get; set; }
-
         public string Smtp { get; set; }
         public  int SmtpPort { get; set; }
+        
 
         public string Return_values()
         {

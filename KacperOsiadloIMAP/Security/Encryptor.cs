@@ -10,7 +10,7 @@ namespace KacperOsiadloIMAP.Security
     {
         public static string Encrypt(string Message)
         {
-            string EncryptionKey = Settings1.Default.EDPassword.ToString(); ;
+            string EncryptionKey = Settings1.Default.EDPassword.ToString();
             byte[] clearBytes = Encoding.Unicode.GetBytes(Message);
             using (Aes encryptor = Aes.Create())
             {

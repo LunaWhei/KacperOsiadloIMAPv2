@@ -29,7 +29,7 @@ namespace KacperOsiadloIMAP
 
         private void Page_Loaded_1(object sender, RoutedEventArgs e)
         {
-            log_window.Text = GH.MainUser.Return_values();
+
         }
 
         private async void Send_mail_Click(object sender, RoutedEventArgs e)
