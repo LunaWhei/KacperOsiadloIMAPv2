@@ -50,21 +50,21 @@ namespace KacperOsiadloIMAP
         private async void Save_login_data_Click(object sender, RoutedEventArgs e)
         {
 
-            GH.MainUser.Login = Login.Text.ToString();
-            GH.MainUser.Password = Password.Text.ToString();
-            GH.MainUser.ImapPort = Convert.ToInt32(Imap_port.Text);
-            GH.MainUser.Imap = ImapServer.Text.ToString();
-            GH.MainUser.Smtp = Smtp.Text.ToString();
-            GH.MainUser.EmailAdress = Email.Text.ToString();
-            GH.MainUser.SmtpPort = Convert.ToInt32(Smtp_port.Text);
+            GH.MainUser.login = Login.Text.ToString();
+            GH.MainUser.password = Password.Text.ToString();
+            GH.MainUser.imapPort = Convert.ToInt32(Imap_port.Text);
+            GH.MainUser.imap = ImapServer.Text.ToString();
+            GH.MainUser.smtp = Smtp.Text.ToString();
+            GH.MainUser.emailAddress = Email.Text.ToString();
+            GH.MainUser.smtpPort = Convert.ToInt32(Smtp_port.Text);
             MailboxPage mailboxpage = new();
 
 
             using var client = new ImapClient();
             try
             {
-                await client.ConnectAsync(GH.MainUser.Imap, GH.MainUser.ImapPort, SecureSocketOptions.Auto);
-                await client.AuthenticateAsync(GH.MainUser.Login, GH.MainUser.Password);
+                await client.ConnectAsync(GH.MainUser.imap, GH.MainUser.imapPort, SecureSocketOptions.Auto);
+                await client.AuthenticateAsync(GH.MainUser.login, GH.MainUser.password);
                 Is_logged_in = true;
                 MailboxFrame.Navigate(mailboxpage);
                 MailboxTab.IsEnabled = true;
@@ -91,7 +91,8 @@ namespace KacperOsiadloIMAP
 
         private void New_Mail_Click(object sender, RoutedEventArgs e)
         {
-            SendEmailPage p1 = new();
+            SendEmailPage p1 = new(this);
+            New_Mail.Visibility = Visibility.Hidden;
             MailboxFrame.Navigate(p1);
             
         }
@@ -103,6 +104,7 @@ namespace KacperOsiadloIMAP
             {
                 MailboxTab.IsEnabled = false;
             }
+            
         }
     }
 }

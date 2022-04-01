@@ -8,19 +8,19 @@ namespace KacperOsiadloIMAP.Models
 {
     public class User
     {
-        public string Login { get; set; }
-        public string Password { get; set; }
-        public int ImapPort { get; set; }
-        public string Imap { get; set; }
-        public string EmailAdress { get; set; }
-        public string  Identity { get; set; }
-        public string Smtp { get; set; }
-        public  int SmtpPort { get; set; }
+        public string login { get; set; }
+        public string password { get; set; }
+        public int imapPort { get; set; }
+        public string imap { get; set; }
+        public string emailAddress { get; set; }
+        public string  identity { get; set; }
+        public string smtp { get; set; }
+        public  int smtpPort { get; set; }
         
 
         public string Return_values()
         {
-            return Login+"\n"+Password+"\n"+ImapPort.ToString()+"\n"+Imap+"\n"+Smtp+"\n"+SmtpPort+"\n"+EmailAdress;
+            return login+"\n"+password+"\n"+imapPort.ToString()+"\n"+imap+"\n"+smtp+"\n"+smtpPort+"\n"+emailAddress;
         }
     }
 

@@ -60,14 +60,14 @@ namespace KacperOsiadloIMAP
                     this.Dispatcher.Invoke(() =>
                     {
                         
-                        FolderCollection.Add(new Folder() { Name = Folders.Name, Path =Folders.FullName });
+                        FolderCollection.Add(new Folder() { name = Folders.Name, path =Folders.FullName });
                         
 
 
                     });
                 });
             }
-            FolderCollection.OrderBy(x => x.Name);
+            FolderCollection.OrderBy(x => x.name);
             List<MimeModel> messages = new List<MimeModel>();
             messages = ImapService.GetMessageListBasedOnCurrentFolderAsync();
             foreach (var message in messages)
@@ -88,10 +88,10 @@ namespace KacperOsiadloIMAP
             Folder item = (Folder)FolderListBox.SelectedItem;
             if (item == null)
             {
-                item = new Folder() { Path = "INBOX" };
+                item = new Folder() { path = "INBOX" };
             }
             
-            var emails = ImapService.GetMessageListBasedOnCurrentFolderAsync(item.Path);
+            var emails = ImapService.GetMessageListBasedOnCurrentFolderAsync(item.path);
             try
             {
                 
@@ -107,14 +107,13 @@ namespace KacperOsiadloIMAP
 
                                 this.Dispatcher.Invoke(() =>
                                 {
-                                    MailCollection.Add(new MailMessage() { 
-                                        Lp = "",
-                                        Subject = mail.Subject,
-                                        Body = mail.GetTextBody(MimeKit.Text.TextFormat.Plain),
-                                        Date = mail.Date.ToString(),
-                                        From = mail.From,
-                                        To = mail.To.ToString(),
-                                        AttachmentsName = mail.Attachments
+                                    MailCollection.Add(new MailMessage() {  
+                                        subject = mail.Subject,
+                                        body = mail.GetTextBody(MimeKit.Text.TextFormat.Plain),
+                                        date = mail.Date.ToString(),
+                                        from = mail.From,
+                                        to = mail.To.ToString(),
+                                        attachmentsName = mail.Attachments
                                     });
 
                                 });

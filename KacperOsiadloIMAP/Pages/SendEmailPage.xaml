@@ -15,11 +15,11 @@
 
         </Style>
         <Style TargetType="Grid">
-            <Setter Property="Background" Value="#1e272e" />
+            <Setter Property="Background" Value="#fff" />
         </Style>
         <Style TargetType="TextBox">
-            <Setter Property="Background" Value="#485460"/>
-            <Setter Property="Foreground" Value="#d2dae2"/>
+            <Setter Property="Background" Value="#fff"/>
+            <Setter Property="Foreground" Value="#121212"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="Height" Value="30"/>
             <Setter Property="BorderBrush" Value="#1e272e"/>
@@ -34,8 +34,8 @@
                             <Border 
                                 Name="Border"
                                 Margin="0,0,-4,0" 
-                                Background="#ff5e57"
-                                BorderBrush="#ff5e57" 
+                                Background="skyblue"
+                                BorderBrush="skyblue" 
                                 BorderThickness="0,0,0,0" 
                                 CornerRadius="02,02,02,02" >
                                 <ContentPresenter x:Name="ContentSite"
@@ -52,7 +52,7 @@
                             </Trigger>
                             <Trigger Property="IsSelected" Value="True">
                                 <Setter Property="Panel.ZIndex" Value="100" />
-                                <Setter TargetName="Border" Property="Background" Value="#ff3f34" />
+                                <Setter TargetName="Border" Property="Background" Value="skyblue" />
 
                             </Trigger>
 
@@ -64,8 +64,8 @@
         </Style>
 
         <Style TargetType="{x:Type Button}">
-            <Setter Property="Background" Value="#ff5e57"/>
-            <Setter Property="Foreground" Value="#1e272e"/>
+            <Setter Property="Background" Value="skyblue"/>
+            <Setter Property="Foreground" Value="#121212"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -77,14 +77,14 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#ff3f34"/>
+                    <Setter Property="Background" Value="skyblue"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
 
         <Style TargetType="Label">
-            <Setter Property="Background" Value="#1e272e"/>
-            <Setter Property="Foreground" Value="#d2dae2"/>
+            <Setter Property="Background" Value="#fff"/>
+            <Setter Property="Foreground" Value="#121212"/>
 
             <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
@@ -103,7 +103,7 @@
 
         </Grid.RowDefinitions>
         <Grid>
-            <Button Width="200" HorizontalAlignment="Left" Background="#ff3f34" x:Name="Send_mail" Height="50" Content="send mail" Click="Send_mail_Click"/>
+            <Button Width="200" HorizontalAlignment="Left"  x:Name="Send_mail" Height="50" Content="Wyślij wiadomość" Click="Send_mail_Click"/>
             <Button Height="50" HorizontalAlignment="Right" Width="100" Content="Zamknij okno" x:Name="Close_button" Click="Close_button_Click"/>
 
         </Grid>

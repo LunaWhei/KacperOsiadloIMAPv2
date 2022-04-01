@@ -2,6 +2,7 @@
 using System.Text;
 using System.Security.Cryptography;
 using System;
+using System.Windows;
 
 namespace KacperOsiadloIMAP.Security
 {
@@ -9,25 +10,38 @@ namespace KacperOsiadloIMAP.Security
     {
         public static string Decrypt(string encryptedMessage)
         {
-            string EncryptionKey = Settings1.Default.EDPassword.ToString();
-            encryptedMessage = encryptedMessage.Replace(" ", "+");
-            byte[] cipherBytes = Convert.FromBase64String(encryptedMessage);
-            using (Aes encryptor = Aes.Create())
+            try
             {
-                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
-                encryptor.Key = pdb.GetBytes(32);
-                encryptor.IV = pdb.GetBytes(16);
-                using (MemoryStream ms = new MemoryStream())
+                string EncryptionKey = Settings1.Default.EDPassword.ToString();
+                encryptedMessage = encryptedMessage.Replace(" ", "+");
+                byte[] cipherBytes = Convert.FromBase64String(encryptedMessage);
+                using (Aes encryptor = Aes.Create())
                 {
-                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
+                    Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[]
                     {
-                        cs.Write(cipherBytes, 0, cipherBytes.Length);
-                        cs.Close();
+                    0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76
+                    });
+                    encryptor.Key = pdb.GetBytes(32);
+                    encryptor.IV = pdb.GetBytes(16);
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        using (CryptoStream cs = new CryptoStream(ms,
+                            encryptor.CreateDecryptor(),
+                            CryptoStreamMode.Write))
+                        {
+                            cs.Write(cipherBytes, 0, cipherBytes.Length);
+                            cs.Close();
+                        }
+                        encryptedMessage = Encoding.Unicode.GetString(ms.ToArray());
                     }
-                    encryptedMessage = Encoding.Unicode.GetString(ms.ToArray());
                 }
+                return encryptedMessage;
             }
-            return encryptedMessage;
+            catch (Exception)
+            {
+                MessageBox.Show("Ta wiadomość nie jest zaszyfrowana!");
+                return "Ta wiadomość nie została zaszyfrowana!";
+            }
         }
     }
 }

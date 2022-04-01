@@ -10,15 +10,15 @@ namespace KacperOsiadloIMAP.Models
 {
    public class MailMessage
     {
-        public string Subject { get; set; }
+        public string subject { get; set; }
 
-        public string To { get; set; }
+        public string to { get; set; }
         public string Lp { get; set; }
-        public string Date { get; set; }
-        public string Body { get; set; }
-        public MailKit.UniqueId UID { get; set; }
-        public MimeKit.InternetAddressList From { get; set; }
-        public string Message_data { get; set; }
-        public IEnumerable<MimeEntity> AttachmentsName { get; set; }
+        public string date { get; set; }
+        public string body { get; set; }
+        public MailKit.UniqueId uid { get; set; }
+        public MimeKit.InternetAddressList from { get; set; }
+        public string message_data { get; set; }
+        public IEnumerable<MimeEntity> attachmentsName { get; set; }
     }
 }

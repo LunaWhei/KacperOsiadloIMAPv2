@@ -22,9 +22,13 @@ namespace KacperOsiadloIMAP
     /// </summary>
     public partial class SendEmailPage : Page
     {
-        public SendEmailPage()
+        MainWindow main;
+        public SendEmailPage(MainWindow main)
         {
+            this.main = main;
             InitializeComponent();
+            
+            
         }
 
         private void Page_Loaded_1(object sender, RoutedEventArgs e)
@@ -36,28 +40,35 @@ namespace KacperOsiadloIMAP
         {
             SmtpService email = new(GH.MainUser)
             {
-                Body = Message_field.Text.ToString(),
-                To = To_field.Text.ToString(),
-                Subject = Subject_field.Text.ToString()
+                body = Message_field.Text.ToString(),
+                to = To_field.Text.ToString(),
+                subject = Subject_field.Text.ToString()
             };
 
             try
             {
                 await email.SendEmail();
-                
+                main.New_Mail.Visibility = Visibility.Visible;
+                MailboxPage p = new();
+                main.MailboxFrame.Navigate(p);
+                MessageBox.Show("Wiadomość wysłana prawidłowo");
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Wysyłka nie powiodła się: {0}", ex.ToString());
+                MessageBox.Show(String.Format("Wysyłka nie powiodła się: {0}", ex.ToString()));
 
             }
+
 
            
         }
 
         private void Close_button_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.GoBack();
+            main.New_Mail.Visibility = Visibility.Visible;
+            MailboxPage p = new();
+            main.MailboxFrame.Navigate(p);
         }
     }
 }

@@ -26,7 +26,7 @@ namespace KacperOsiadloIMAP.Windows
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            if (Mail.AttachmentsName.FirstOrDefault() != null)
+            if (Mail.attachmentsName.FirstOrDefault() != null)
             {
                 Attachment_information = "Ta wiadomośc posiada załączniki, czy chcesz je pobrać?";
             }
@@ -39,15 +39,15 @@ namespace KacperOsiadloIMAP.Windows
 
             try
             {
-                MailHeader.Items.Insert(0, "From: "+Mail.From);
-                MailHeader.Items.Insert(1, "To: " + Mail.To);
-                MailHeader.Items.Insert(2, "Subject: " + Mail.Subject);
-                MailHeader.Items.Insert(3, Decryptor.Decrypt(Mail.Body));
+                MailHeader.Items.Insert(0, "Nadawca: "+Mail.from);
+                MailHeader.Items.Insert(1, "Odbiorca: " + Mail.to);
+                MailHeader.Items.Insert(2, "Temat: " + Mail.subject);
+                MailHeader.Items.Insert(3, Decryptor.Decrypt(Mail.body));
                 MailHeader.Items.Insert(4, Attachment_information);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                MessageBox.Show(String.Format("Wyświetlenie wiadomości nie powiodła się: {0}", ex.ToString()));
             }
 
         }

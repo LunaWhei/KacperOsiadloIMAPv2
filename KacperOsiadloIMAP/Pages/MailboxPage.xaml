@@ -11,27 +11,27 @@
     
     <Page.Resources>
         <Style TargetType="ListBox">
-            <Setter Property="Background" Value="#1e272e"/>
-            <Setter Property="Foreground" Value="#d2dae2"/>
+            <Setter Property="Background" Value="#fff"/>
+            <Setter Property="Foreground" Value="#121212"/>
         </Style>
 
 
 
         <Style TargetType="ListView">
-            <Setter Property="Background" Value="#1e272e"/>
-            <Setter Property="Foreground" Value="#d2dae2"/>
+            <Setter Property="Background" Value="#fff"/>
+            <Setter Property="Foreground" Value="#121212"/>
         </Style>
         <Style TargetType="ListViewItem">
-            <Setter Property="Background" Value="#1e272e"/>
-            <Setter Property="Foreground" Value="#d2dae2"/>
+            <Setter Property="Background" Value="#fff"/>
+            <Setter Property="Foreground" Value="#121212"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Foreground" Value="#d2dae2"/>
-                    <Setter Property="Background" Value="#1e272e"/>
+                    <Setter Property="Foreground" Value="#121212"/>
+                    <Setter Property="Background" Value="#fff"/>
                 </Trigger>
                 <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Foreground" Value="#d2dae2"/>
-                    <Setter Property="Background" Value="#1e272e"/>
+                    <Setter Property="Foreground" Value="#121212"/>
+                    <Setter Property="Background" Value="#fff"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -48,7 +48,7 @@
             <ListBox SelectionChanged="FolderListBox_SelectionChanged" SelectedIndex="0" x:Name="FolderListBox" ItemsSource="{Binding Path=folderCollection,UpdateSourceTrigger=PropertyChanged}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Name}"/>
+                        <TextBlock Text="{Binding name}"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
@@ -58,11 +58,10 @@
             <ListView  MouseDoubleClick="Mailbox_list_MouseDoubleClick" Margin="10" Name="Mailbox_list" ItemsSource="{Binding Path=mailCollection,UpdateSourceTrigger=PropertyChanged}">
                 <ListView.View >
                     <GridView>
-                        <GridViewColumn Width="60" Header="lp" DisplayMemberBinding="{Binding Lp}"/>
-                        <GridViewColumn Width="300" Header="Subject" DisplayMemberBinding="{Binding Subject}"/>
-                        <GridViewColumn Width="300" Header="Sender" DisplayMemberBinding="{Binding From}"/>
-                        <GridViewColumn Width="200" Header="Date" DisplayMemberBinding="{Binding Date}"/>
-                        <GridViewColumn Width="50" Header="UID" DisplayMemberBinding="{Binding UID}"/>
+                        <GridViewColumn Width="300" Header="Temat" DisplayMemberBinding="{Binding subject}"/>
+                        <GridViewColumn Width="300" Header="Nadawca" DisplayMemberBinding="{Binding from}"/>
+                        <GridViewColumn Width="200" Header="Data" DisplayMemberBinding="{Binding date}"/>
+                        <GridViewColumn Width="50" Header="UID" DisplayMemberBinding="{Binding uid}"/>
 
                     </GridView>
                 </ListView.View>

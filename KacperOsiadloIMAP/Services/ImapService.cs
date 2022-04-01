@@ -26,8 +26,8 @@ namespace KacperOsiadloIMAP.Services
             
             try
             {
-                client.Connect(GH.MainUser.Imap, GH.MainUser.ImapPort, SecureSocketOptions.Auto);
-                client.Authenticate(GH.MainUser.Login, GH.MainUser.Password);
+                client.Connect(GH.MainUser.imap, GH.MainUser.imapPort, SecureSocketOptions.Auto);
+                client.Authenticate(GH.MainUser.login, GH.MainUser.password);
             }
             catch (Exception ex)
             {
@@ -108,8 +108,8 @@ namespace KacperOsiadloIMAP.Services
             using var client = new ImapClient();
             try
             {
-                client.Connect(GH.MainUser.Imap, GH.MainUser.ImapPort, SecureSocketOptions.Auto);
-                client.Authenticate(GH.MainUser.Login, GH.MainUser.Password);
+                client.Connect(GH.MainUser.imap, GH.MainUser.imapPort, SecureSocketOptions.Auto);
+                client.Authenticate(GH.MainUser.login, GH.MainUser.password);
             }
             catch (Exception ex)
             {
@@ -137,8 +137,8 @@ namespace KacperOsiadloIMAP.Services
             using var client = new ImapClient();
             try
             {
-            client.Connect(GH.MainUser.Imap, GH.MainUser.ImapPort, SecureSocketOptions.Auto);
-            client.Authenticate(GH.MainUser.Login, GH.MainUser.Password);
+            client.Connect(GH.MainUser.imap, GH.MainUser.imapPort, SecureSocketOptions.Auto);
+            client.Authenticate(GH.MainUser.login, GH.MainUser.password);
 
             }
             catch (Exception ex)
@@ -171,8 +171,8 @@ namespace KacperOsiadloIMAP.Services
             public static void SetFlagSeenMessage(MailKit.UniqueId UID)
         {
             using var client = new ImapClient();
-            client.Connect(GH.MainUser.Imap, GH.MainUser.ImapPort, SecureSocketOptions.Auto);
-            client.Authenticate(GH.MainUser.Login, GH.MainUser.Password);
+            client.Connect(GH.MainUser.imap, GH.MainUser.imapPort, SecureSocketOptions.Auto);
+            client.Authenticate(GH.MainUser.login, GH.MainUser.password);
         
         }
 

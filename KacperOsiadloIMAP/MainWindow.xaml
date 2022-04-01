@@ -15,11 +15,11 @@
 
         </Style>
         <Style TargetType="Grid">
-            <Setter Property="Background" Value="#1e272e" />
+            <Setter Property="Background" Value="#fff" />
         </Style>
         <Style TargetType="TextBox">
-            <Setter Property="Background" Value="#485460"/>
-            <Setter Property="Foreground" Value="#d2dae2"/>
+            <Setter Property="Background" Value="#fff"/>
+            <Setter Property="Foreground" Value="#121212"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="Height" Value="30"/>
             <Setter Property="BorderBrush" Value="#1e272e"/>
@@ -34,8 +34,8 @@
                             <Border 
                                 Name="Border"
                                 Margin="0,0,-4,0" 
-                                Background="#ff5e57"
-                                BorderBrush="#ff5e57" 
+                                Background="skyblue"
+                                BorderBrush="skyblue" 
                                 BorderThickness="0,0,0,0" 
                                 CornerRadius="02,02,02,02" >
                                 <ContentPresenter x:Name="ContentSite"
@@ -52,7 +52,7 @@
                             </Trigger>
                             <Trigger Property="IsSelected" Value="True">
                                 <Setter Property="Panel.ZIndex" Value="100" />
-                                <Setter TargetName="Border" Property="Background" Value="#ff3f34" />
+                                <Setter TargetName="Border" Property="Background" Value="skyblue" />
 
                             </Trigger>
 
@@ -64,7 +64,7 @@
         </Style>
 
         <Style TargetType="{x:Type Button}">
-            <Setter Property="Background" Value="#ff5e57"/>
+            <Setter Property="Background" Value="SkyBlue"/>
             <Setter Property="Foreground" Value="#1e272e"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -77,14 +77,14 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#ff3f34"/>
+                    <Setter Property="Background" Value="skyblue"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
 
         <Style TargetType="Label">
-            <Setter Property="Background" Value="#1e272e"/>
-            <Setter Property="Foreground" Value="#d2dae2"/>
+            <Setter Property="Background" Value="#fff"/>
+            <Setter Property="Foreground" Value="#121212"/>
 
             <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
@@ -117,7 +117,7 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Button x:Name="New_Mail" Content="Send Mail" Click="New_Mail_Click"/>
+                        <Button x:Name="New_Mail" Content="Napisz nową" Click="New_Mail_Click"/>
                     </Grid>
                     <Grid Grid.Row="1" Grid.ColumnSpan="4">
                         <Frame NavigationUIVisibility="Hidden" Grid.Column="1" x:Name="MailboxFrame"/>

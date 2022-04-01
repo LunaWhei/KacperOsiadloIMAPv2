@@ -16,16 +16,16 @@ namespace KacperOsiadloIMAP.Models
     //TODO Move this to services
     class SmtpService
     {
-        public string Subject { get; set; }
-        public string To { get; set; }
-        public string Body { get; set; }
-        private User User { get; set; }
+        public string subject { get; set; }
+        public string to { get; set; }
+        public string body { get; set; }
+        private User user { get; set; }
 
        
         public SmtpService (User user)
         {
 
-            this.User = user;
+            this.user = user;
 
 
         }
@@ -38,22 +38,22 @@ namespace KacperOsiadloIMAP.Models
 
             
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress(User.Identity, User.EmailAdress));
-            message.To.Add(new MailboxAddress("carl", To));
-            message.Subject = Subject;
+            message.From.Add(new MailboxAddress(user.identity, user.emailAddress));
+            message.To.Add(new MailboxAddress("carl", to));
+            message.Subject = subject;
 
             message.Body = new TextPart("plain")
             {
-                Text = Encryptor.Encrypt(Body)
+                Text = Encryptor.Encrypt(body)
             };
-            client.Connect(User.Smtp, User.SmtpPort, SecureSocketOptions.Auto);
-            imap.Connect(User.Imap, User.ImapPort, SecureSocketOptions.Auto);
-            await client.AuthenticateAsync(User.Login, User.Password);
+            client.Connect(user.smtp, user.smtpPort, SecureSocketOptions.Auto);
+            imap.Connect(user.imap, user.imapPort, SecureSocketOptions.Auto);
+            await client.AuthenticateAsync(user.login, user.password);
             if (client.IsAuthenticated)
             {
 
                 client.Send(message);
-               await imap.AuthenticateAsync(User.Login, User.Password);
+               await imap.AuthenticateAsync(user.login, user.password);
                var folder = imap.Inbox.GetSubfolder("Sent");
                 folder.Open(FolderAccess.ReadWrite);
                 folder.Append(message);
